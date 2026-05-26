@@ -4,5 +4,6 @@
     <defaultValue>false</defaultValue>
     <label>Auto Assigned</label>
     <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>
