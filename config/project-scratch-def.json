@@ -1,0 +1,19 @@
+{
+  "orgName": "Bedrock Project 1 Dev",
+  "edition": "Enterprise",
+  "features": ["EnableSetPasswordInApi"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "securitySettings": {
+      "sessionSettings": {
+        "sessionTimeout": "TwoHours"
+      }
+    },
+    "apexSettings": {
+      "enableDisableParallelApexTesting": false
+    }
+  },
+  "hasSampleData": false
+}

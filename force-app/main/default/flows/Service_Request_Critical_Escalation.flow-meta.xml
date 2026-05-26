@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <description>Record-triggered Flow on BE_Service_Request__c. When a new Critical priority request is created, sets Status to In Progress. Complements the Apex handler as a declarative showcase.</description>
+    <environments>Default</environments>
+    <interviewLabel>Service Request Critical Escalation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Service Request Critical Escalation</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <doesRequireRecordChangedToMeetCriteria>false</doesRequireRecordChangedToMeetCriteria>
+        <filterFormula>AND(
+  ISPICKVAL({!$Record.Priority__c}, "Critical"),
+  ISPICKVAL({!$Record.Status__c}, "New")
+)</filterFormula>
+        <object>BE_Service_Request__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+        <connector>
+            <targetReference>Set_Status_In_Progress</targetReference>
+        </connector>
+    </start>
+    <assignments>
+        <description>Set Status to In Progress for Critical priority new requests.</description>
+        <name>Set_Status_In_Progress</name>
+        <label>Set Status to In Progress</label>
+        <locationX>176</locationX>
+        <locationY>120</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>In Progress</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <status>Active</status>
+</Flow>
